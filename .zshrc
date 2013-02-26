@@ -1,5 +1,6 @@
 export LANG=ja_JP.UTF-8
 alias mamemose="/usr/local/lib/ruby/gems/1.9.1/gems/mamemose-0.2.1/bin/mamemose"
+alias logtoday="$HOME/logtoday"
 ## 履歴の保存先
 HISTFILE=$HOME/.zsh-history
 ## メモリに展開する履歴の数
@@ -84,3 +85,11 @@ setopt hist_no_store
 setopt list_packed
 ## 最後のスラッシュを自動的に削除しない
 setopt noautoremoveslash
+
+alias ls='ls -GF'
+autoload colors
+colors
+
+PROMPT=" %{${fg[yellow]}%}%~%{${reset_color}%}
+[%n]$ "
+PROMPT2='[%n]> ' 
