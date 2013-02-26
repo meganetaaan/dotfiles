@@ -88,7 +88,7 @@ setopt list_packed
 ## 最後のスラッシュを自動的に削除しない
 setopt noautoremoveslash
 
-alias ls='ls -lahGF'
+alias ls='ls -lhGF'
 autoload colors
 colors
 
