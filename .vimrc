@@ -41,13 +41,13 @@ if has('vim_starting')
 	call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 " originalrepos on github
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc'
+"NeoBundle 'Shougo/neobundle.vim'
+"NeoBundle 'Shougo/vimproc'
 NeoBundle 'VimClojure'
 NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
+"NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'Shougo/neocomplcache'
+"NeoBundle 'Shougo/neosnippet'
 NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'scrooloose/nerdtree'
@@ -79,7 +79,16 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 ""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
 
+"Twitter for Vim
 NeoBundle 'TwitVim'
+" 文字数をカウントする
+NeoBundle 'anekos/char-counter-vim'
+set statusline=%{b:charCounterCount}
+
+" はてなブログに投稿
+NeoBundle 'motemen/hatena-vim'
+let g:hatena_user = 'meganetaaan'
+
 filetype plugin indent on     " required!
 filetype indent on
 syntax on
