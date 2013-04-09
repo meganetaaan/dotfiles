@@ -77,6 +77,14 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 ""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
 
+" 文字数をカウントする
+NeoBundle 'anekos/char-counter-vim'
+set statusline=%{b:charCounterCount}
+
+" はてなブログに投稿
+NeoBundle 'motemen/hatena-vim'
+let g:hatena_user = 'meganetaaan'
+
 filetype plugin indent on     " required!
 filetype indent on
 syntax on

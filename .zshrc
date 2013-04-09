@@ -61,6 +61,7 @@ setopt share_history
 zstyle ':completion:*:default' menu select=1
 ## 補完候補の色づけ
 #eval `dircolors`
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 export ZLS_COLORS=$LS_COLORS
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 ## ディレクトリ名だけで cd
