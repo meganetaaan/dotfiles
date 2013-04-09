@@ -19,7 +19,9 @@ vmap <silent> ,ss :VimShellSendString<CR>
 " 選択中に,ss: 非同期で開いたインタプリタに選択行を評価させる
 nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
 
-
+" TwitVim
+let twitvim_login_b64 ="bWVnYW5ldGFhYW46c3VraXlha2lkb24K" 
+let twitvim_count = 100
 " display
 
 " ディレクトリが存在しない場合は確認・作成する
@@ -77,6 +79,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 ""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
 
+NeoBundle 'TwitVim'
 filetype plugin indent on     " required!
 filetype indent on
 syntax on
