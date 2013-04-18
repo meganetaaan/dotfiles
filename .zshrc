@@ -1,4 +1,6 @@
 export LANG=ja_JP.UTF-8
+if echo $OSTYPE | fgrep -q darwin; then
+fi
 export GIT_EDITOR="/usr/local/bin/vim"
 alias mamemose="/usr/local/lib/ruby/gems/1.9.1/gems/mamemose-0.2.1/bin/mamemose"
 alias logtoday="$HOME/logtoday"
