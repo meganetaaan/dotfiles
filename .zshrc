@@ -2,6 +2,7 @@ export LANG=ja_JP.UTF-8
 export GIT_EDITOR="/usr/local/bin/vim"
 alias mamemose="/usr/local/lib/ruby/gems/1.9.1/gems/mamemose-0.2.1/bin/mamemose"
 alias logtoday="$HOME/logtoday"
+alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 
 ## 履歴の保存先
 HISTFILE=$HOME/.zsh-history

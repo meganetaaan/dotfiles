@@ -10,6 +10,13 @@ nmap n nzz
 nmap N Nzz
 autocmd BufNewFile log*.md 0r $HOME/.vim/template/log_md.txt
 
+
+" neocomplcache & neosnippet
+let g:neocomplcache_enable_at_startup = 1
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+
+" VimShell
 " ,is: シェルを起動
 nnoremap <silent> ,is :VimShell<CR>
 " ,irb: irbを非同期で起動
@@ -78,6 +85,9 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 ""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
+
+" ColorScheme
+colorscheme molokai
 
 "Twitter for Vim
 NeoBundle 'TwitVim'
@@ -162,13 +172,13 @@ NeoBundleLazy 'taichouchou2/unite-reek', {
 			\ },
 			\ 'autoload': { 'filetypes': ['ruby', 'eruby', 'haml'] },
 			\ 'depends' : 'Shougo/unite.vim' }
-NeoBundleLazy 'taichouchou2/alpaca_complete', {
-			\ 'depends' : 'tpope/vim-rails',
-			\ 'build' : {
-			\    'mac':  'gem install alpaca_complete',
-			\    'unix': 'gem install alpaca_complete',
-			\   }
-			\ }
+"NeoBundleLazy 'taichouchou2/alpaca_complete', {
+"			\ 'depends' : 'tpope/vim-rails',
+"			\ 'build' : {
+"			\    'mac':  'gem install alpaca_complete',
+"			\    'unix': 'gem install alpaca_complete',
+"			\   }
+"			\ }
 
 let s:bundle_rails = 'unite-rails unite-rails_best_practices unite-rake alpaca_complete'
 
