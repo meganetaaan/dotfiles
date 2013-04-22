@@ -10,7 +10,6 @@ nmap n nzz
 nmap N Nzz
 autocmd BufNewFile log*.md 0r $HOME/.vim/template/log_md.txt
 
-
 " neocomplcache & neosnippet
 let g:neocomplcache_enable_at_startup = 1
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
