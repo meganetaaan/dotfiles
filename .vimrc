@@ -3,6 +3,9 @@ set nocompatible               " be iMproved
 set backspace=indent,eol,start
 set number
 filetype off
+set notitle
+set expandtab
+set ts=4 sw=4 sts=0
 
 " KeyRemap
 nmap <space> zz
@@ -97,6 +100,24 @@ set statusline=%{b:charCounterCount}
 " はてなブログに投稿
 NeoBundle 'motemen/hatena-vim'
 let g:hatena_user = 'meganetaaan'
+
+" vim-latex
+NeoBundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+filetype plugin on
+let tex_flavor = 'platex'
+set grepprg=grep\ -nH\ $*
+set shellslash
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Imap_UsePlaceHolders = 1
+let g:Imap_DeleteEmptyPlaceHolders = 1
+let g:Imap_StickyPlaceHolders = 0
+let g:Tex_CompileRule_dvi = 'platex --interaction=nonstopmode $*'
+let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
+let g:Tex_FormatDependency_ps = 'dvi,ps'
+let g:Tex_FormatDependency_pdf = 'dvi,pdf'
+let g:Tex_BibtexFlavor = 'jbibtex'
+let g:Tex_ViewRule_dvi = 'pxdvi'
+let g:Tex_ViewRule_pdf = '/usr/bin/open -a preview'
 
 filetype plugin indent on     " required!
 filetype indent on
@@ -206,6 +227,3 @@ NeoBundleLazy 'ruby-matchit', {
 "}}}
 
 " Load Plugins on other sites
-NeoBundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
-
-
