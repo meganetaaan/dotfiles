@@ -24,14 +24,13 @@ nnoremap <silent> ,is :VimShell<CR>
 " ,irb: irbを非同期で起動
 nnoremap <silent> ,irb :VimShellInteractive irb<CR>
 " ,ss: 非同期で開いたインタプリタに現在の行を評価させる
-vmap <silent> ,ss :VimShellSendString<CR>
-" 選択中に,ss: 非同期で開いたインタプリタに選択行を評価させる
 nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
+" 選択中に,ss: 非同期で開いたインタプリタに選択行を評価させる
+vmap <silent> ,ss :VimShellSendString<CR>
 
 " TwitVim
 let twitvim_login_b64 ="bWVnYW5ldGFhYW46c3VraXlha2lkb24K" 
 let twitvim_count = 100
-" display
 
 " ディレクトリが存在しない場合は確認・作成する
 augroup vimrc-auto-mkdir  " {{{

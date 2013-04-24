@@ -1,6 +1,8 @@
 export LANG=ja_JP.UTF-8
 if echo $OSTYPE | fgrep -q darwin; then
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+export PATH=$(brew --prefix ruby)/bin:$PATH
+alias irb=pry
 fi
 if echo $OSTYPE | fgrep -q linux; then
 alias pbcopy='xsel -i -b'
