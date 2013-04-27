@@ -4,6 +4,7 @@ set backspace=indent,eol,start
 set number
 filetype off
 set notitle
+set smarttab
 set expandtab
 set ts=4 sw=4 sts=0
 
@@ -12,6 +13,15 @@ nmap <space> zz
 nmap n nzz
 nmap N Nzz
 autocmd BufNewFile log*.md 0r $HOME/.vim/template/log_md.txt
+
+" Display
+set ambiwidth=double
+
+" Persistent Undo
+if has('persistent_undo')
+    set undodir=~/.vim/undo
+    set undofile
+endif
 
 " neocomplcache & neosnippet
 let g:neocomplcache_enable_at_startup = 1
@@ -31,6 +41,8 @@ vmap <silent> ,ss :VimShellSendString<CR>
 " TwitVim
 let twitvim_login_b64 ="bWVnYW5ldGFhYW46c3VraXlha2lkb24K" 
 let twitvim_count = 100
+
+
 
 " ディレクトリが存在しない場合は確認・作成する
 augroup vimrc-auto-mkdir  " {{{
@@ -60,6 +72,16 @@ NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-markdown'
+
+" OpenBrowser
+NeoBundle 'https://github.com/tyru/open-browser.vim.git'
+nmap gW <Plug>(openbrowser-open)
+
+" Ctags
+NeoBundle 'majutsushi/tagbar'
+nmap <Leader> tt :TagbarToggle<CR>
+
+" colorscheme
 
 " solarized カラースキーム
 NeoBundle 'altercation/vim-colors-solarized'
@@ -121,6 +143,11 @@ let g:Tex_ViewRule_pdf = '/usr/bin/open -a preview'
 filetype plugin indent on     " required!
 filetype indent on
 syntax on
+
+" Git
+NeoBundle 'git://github.com/tpope/vim-fugitive.git'
+
+
 " neobundle"{{{
 " コマンドを伴うやつの遅延読み込み
 "bundle"{{{
@@ -170,6 +197,9 @@ NeoBundleLazy 'tpope/vim-surround', {
 			\     ['vx', '<Plug>VSurround']
 			\ ]}}
 " }}}
+" Excittranslate
+NeoBundle 'git://github.com/mattn/webapi-vim.git'
+NeoBundle 'mattn/excitetranslate-vim'
 
 " ruby / railsサポート {{{
 NeoBundle 'tpope/vim-rails'
