@@ -2,6 +2,7 @@ export LANG=ja_JP.UTF-8
 if echo $OSTYPE | fgrep -q darwin; then
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 export PATH=$(brew --prefix ruby)/bin:$PATH
+export PATH=$(brew --prefix python)/bin:$PATH
 alias irb=pry
 fi
 if echo $OSTYPE | fgrep -q linux; then
@@ -11,6 +12,9 @@ fi
 export GIT_EDITOR="/usr/local/bin/vim"
 alias mamemose="/usr/local/lib/ruby/gems/1.9.1/gems/mamemose-0.2.1/bin/mamemose"
 alias logtoday="$HOME/logtoday"
+
+# シャープを含むコマンドライン引数を変に解釈しない
+setopt nonomatch
 
 ## 履歴の保存先
 HISTFILE=$HOME/.zsh-history

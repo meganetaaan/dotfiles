@@ -72,6 +72,7 @@ NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-markdown'
+NeoBundle 'surround.vim'
 
 " OpenBrowser
 NeoBundle 'https://github.com/tyru/open-browser.vim.git'
@@ -186,16 +187,16 @@ NeoBundleLazy 'taichouchou2/rsense-0.3', {
 
 " 便利 {{{
 " 範囲指定のコマンドが使えないので、tcommentのLazy化はNeoBundleのアップデートを待ちましょう...
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundleLazy 'tpope/vim-surround', {
-			\ 'autoload' : {
-			\   'mappings' : [
-			\     ['nx', '<Plug>Dsurround'], ['nx', '<Plug>Csurround'],
-			\     ['nx', '<Plug>Ysurround'], ['nx', '<Plug>YSurround'],
-			\     ['nx', '<Plug>Yssurround'], ['nx', '<Plug>YSsurround'],
-			\     ['nx', '<Plug>YSsurround'], ['vx', '<Plug>VgSurround'],
-			\     ['vx', '<Plug>VSurround']
-			\ ]}}
+" NeoBundle 'tomtom/tcomment_vim'
+" NeoBundleLazy 'tpope/vim-surround', {
+" 			\ 'autoload' : {
+" 			\   'mappings' : [
+" 			\     ['nx', '<Plug>Dsurround'], ['nx', '<Plug>Csurround'],
+" 			\     ['nx', '<Plug>Ysurround'], ['nx', '<Plug>YSurround'],
+" 			\     ['nx', '<Plug>Yssurround'], ['nx', '<Plug>YSsurround'],
+" 			\     ['nx', '<Plug>YSsurround'], ['vx', '<Plug>VgSurround'],
+" 			\     ['vx', '<Plug>VSurround']
+" 			\ ]}}
 " }}}
 " Excittranslate
 NeoBundle 'git://github.com/mattn/webapi-vim.git'
