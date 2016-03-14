@@ -1,6 +1,75 @@
 "Python3 support
 let g:python3_host_prog = expand('$HOME') . '/.anyenv/envs/pyenv/shims/python'
 
+"""" dein settings {{{
+if &compatible
+  set nocompatible
+endif
+" dein.vimのディレクトリ
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+" なければgit clone
+if !isdirectory(s:dein_repo_dir)
+  execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+endif
+execute 'set runtimepath^=' . s:dein_repo_dir
+
+call dein#begin(s:dein_dir)
+
+" 管理するプラグインを記述したファイル
+let s:toml = '~/.config/nvim/dein.toml'
+let s:lazy_toml = '~/.config/nvim/dein_lazy.toml'
+
+" 読み込み、キャッシュは :call dein#clear_cache() で消せます
+if dein#load_cache([expand('<sfile>', s:toml, s:lazy_toml)])
+  call dein#load_toml(s:toml, {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  call dein#save_cache()
+endif
+
+call dein#end()
+
+" vimprocだけは最初にインストールしてほしい
+if dein#check_install(['vimproc'])
+  call dein#install(['vimproc'])
+endif
+" その他インストールしていないものはこちらに入れる
+if dein#check_install()
+  call dein#install()
+endif
+" }}}
+
+""" Syntastic
+let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
+let g:syntastic_check_on_save=1 "保存時にはチェック
+let g:syntastic_check_on_wq = 0 " wqではチェックしない
+let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
+let g:syntastic_loc_list_height=6 "エラー表示ウィンドウの高さ
+set statusline+=%#warningmsg# "エラーメッセージの書式
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_typescript_checkers = ['']
+let g:syntastic_javascript_checkers = ['eslint'] "ESLintを使う
+let g:syntastic_mode_map = {
+      \ 'mode': 'active',
+      \ 'active_filetypes': ['javascript'],
+      \ 'passive_filetypes': []
+      \ }
+let g:quickrun_config={'*': {'split': ''}}
+filetype plugin indent on
+
+""" HTML
+vmap <silent> ;h :s?^\(\s*\)+ '\([^']\+\)',*/s$?\1\2?g<CR>
+vmap <silent> ;q :s?^\(\s*\)\(.*\)\s*$? \1 + '\2'?<CR>
+
+""" CSS
+
+""" JavaScript
+
+""" TypeScript
+autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
+
 " Display
 set notitle
 syntax enable
@@ -20,10 +89,6 @@ nnoremap <ESC><ESC> :nohlsearch<CR>
 imap jk <Esc>
 imap ｊｋ <Esc>
 
-"" HTML
-vmap <silent> ;h :s?^\(\s*\)+ '\([^']\+\)',*/s$?\1\2?g<CR>
-vmap <silent> ;q :s?^\(\s*\)\(.*\)\s*$? \1 + '\2'?<CR>
-
 " StatulLine
 "ステータス行を表示
 set laststatus=2
@@ -40,52 +105,6 @@ if has('persistent_undo')
     set undodir=./.vimundo,~/.vim/undo,.
     set undofile
 endif
-
-" NeoBundle
-if has('vim_starting')
-set runtimepath+=~/.config/nvim/bundle/neobundle.vim/
-endif
-
-call neobundle#begin(expand('~/.nvim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/deoplete.nvim'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tomasr/molokai'
-
-"" HTML
-NeoBundle 'mattn/emmet-vim'
-
-"" CSS
-NeoBundle 'hail2u/vim-css3-syntax'
-
-"" JavaScript
-NeoBundleLazy 'heavenshell/vim-jsdoc' , {'autoload': {'filetypes': ['javascript']}}
-NeoBundle 'moll/vim-node'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'Townk/vim-autoclose'
-NeoBundle 'scrooloose/syntastic'
-let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
-let g:syntastic_check_on_save=1 "保存時にはチェック
-let g:syntastic_check_on_wq = 0 " wqではチェックしない
-let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
-let g:syntastic_loc_list_height=6 "エラー表示ウィンドウの高さ
-set statusline+=%#warningmsg# "エラーメッセージの書式
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_javascript_checkers = ['eslint'] "ESLintを使う
-let g:syntastic_mode_map = {
-      \ 'mode': 'active',
-      \ 'active_filetypes': ['javascript'],
-      \ 'passive_filetypes': []
-      \ }
-NeoBundle 'thinca/vim-quickrun'
-""" 水平に分割する
-let g:quickrun_config={'*': {'split': ''}}
-
-call neobundle#end()
-
-filetype plugin indent on
-NeoBundleCheck
 
 "" Color scheme
 colorscheme molokai
