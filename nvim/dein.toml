@@ -4,12 +4,12 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'Shougo/vimproc'
 
-  [plugins.build]
-  windows = 'tools\\update-dll-mingw'
-  cygwin  = 'make -f make_cygwin.mak'
-  mac     = 'make -f make_mac.mak'
-  linux   = 'make'
-  unix    = 'gmake'
+[plugins.build]
+windows = 'tools\\update-dll-mingw'
+cygwin  = 'make -f make_cygwin.mak'
+mac     = 'make -f make_mac.mak'
+linux   = 'make'
+unix    = 'gmake'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
@@ -21,7 +21,13 @@ repo = 'tomasr/molokai'
 repo = 'thinca/vim-quickrun'
 
 [[plugins]]
+repo = 'Chiel92/vim-autoformat'
+
+[[plugins]]
 repo = 'leafgarland/typescript-vim'
 
 [[plugins]]
 repo = 'scrooloose/syntastic'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'

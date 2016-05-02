@@ -1,4 +1,8 @@
 [[plugins]]
+repo = 'Shougo/neomru.vim'
+on_path = '.*'
+
+[[plugins]]
 repo = 'jiangmiao/auto-pairs'
 on_i = 1
 
@@ -38,6 +42,17 @@ repo = 'moll/vim-node'
 on_ft = 'javascript'
 
 [[plugins]]
+repo = 'carlitux/deoplete-ternjs'
+on_ft = 'javascript'
+[[plugins.build]]
+mac = 'npm install -g tern'
+unix = 'npm install -g tern'
+
+[[plugins]]
+repo = 'digitaltoad/vim-pug'
+on_ft = 'jade'
+
+[[plugins]]
 repo = 'elzr/vim-json'
 on_ft = 'json'
 
@@ -47,9 +62,22 @@ on_ft = ['ts', 'typescript']
 
 [[plugins]]
 repo = 'mhartington/deoplete-typescript'
-depends = ['Shougo/deoplete.nvim', 'tsuquyomi']
+depends = ['deoplete.nvim', 'tsuquyomi']
 on_ft = ['ts', 'typescript']
 
 [[plugins]]
 repo = 'rcmdnk/vim-markdown'
 on_ft = ['md', 'markdown', 'mkd']
+
+[[plugins]]
+repo = 'mattn/gist-vim'
+depends = ['webapi-vim']
+on_ft = ['md', 'markdown', 'mkd']
+
+[[plugins]]
+repo = 'mattn/webapi-vim'
+on_ft = ['md', 'markdown', 'mkd']
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+depends = 'neomru.vim'

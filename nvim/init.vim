@@ -15,20 +15,17 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath^=' . s:dein_repo_dir
 
-call dein#begin(s:dein_dir)
 
-" 管理するプラグインを記述したファイル
-let s:toml = '~/.config/nvim/dein.toml'
-let s:lazy_toml = '~/.config/nvim/dein_lazy.toml'
-
-" 読み込み、キャッシュは :call dein#clear_cache() で消せます
-if dein#load_cache([expand('<sfile>', s:toml, s:lazy_toml)])
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+  " 管理するプラグインを記述したファイル
+  let s:toml = '~/.config/nvim/dein.toml'
+  let s:lazy_toml = '~/.config/nvim/dein_lazy.toml'
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
-  call dein#save_cache()
+  call dein#end()
+  call dein#save_state()
 endif
-
-call dein#end()
 
 " vimprocだけは最初にインストールしてほしい
 if dein#check_install(['vimproc'])
@@ -59,6 +56,9 @@ let g:syntastic_mode_map = {
 let g:quickrun_config={'*': {'split': ''}}
 filetype plugin indent on
 
+""" Autoformat
+au BufWrite * :Autoformat
+
 """ HTML
 vmap <silent> ;h :s?^\(\s*\)+ '\([^']\+\)',*/s$?\1\2?g<CR>
 vmap <silent> ;q :s?^\(\s*\)\(.*\)\s*$? \1 + '\2'?<CR>
@@ -66,6 +66,9 @@ vmap <silent> ;q :s?^\(\s*\)\(.*\)\s*$? \1 + '\2'?<CR>
 """ CSS
 
 """ JavaScript
+
+""" Jade
+autocmd BufNewFile,BufRead *.jade setlocal filetype=jade
 
 """ TypeScript
 autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
@@ -102,8 +105,8 @@ set backupdir=~/.vim/backup,.
 
 " Persistent Undo
 if has('persistent_undo')
-    set undodir=./.vimundo,~/.vim/undo,.
-    set undofile
+  set undodir=./.vimundo,~/.vim/undo,.
+  set undofile
 endif
 
 "" Color scheme
