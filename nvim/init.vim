@@ -93,12 +93,20 @@ imap jk <Esc>
 imap ｊｋ <Esc>
 
 " StatulLine
-"ステータス行を表示
+" "ステータス行を表示
+" set laststatus=2
+" "ステータス行の指定
+" set statusline=%<%f\ %m%r%h%w
+" set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&fileformat.']'}
+" set statusline+=%=%l/%L,%c%V%8P
+
+" vim airline
 set laststatus=2
-"ステータス行の指定
-set statusline=%<%f\ %m%r%h%w
-set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&fileformat.']'}
-set statusline+=%=%l/%L,%c%V%8P
+set showtabline=2
+set t_Co=256
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_theme = 'molokai'
 
 " Backup
 set backupdir=~/.vim/backup,.
