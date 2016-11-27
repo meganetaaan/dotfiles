@@ -1,19 +1,26 @@
 export LANG=ja_JP.UTF-8
 if echo $OSTYPE | fgrep -q darwin; then
-    export PATH=$HOME/.anyenv/bin:/bin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin
-    export ANDROID_HOME=/usr/local/opt/android-sdk
-    export ECLIPSE_HOME=/Applications/eclipse/
-    alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/mvim -v "$@"'
-    alias ll='ls -l'
-    eval "$(anyenv init - zsh)"
-    # Go
-    export GOROOT=/usr/local/opt/go/libexec
-    export GOPATH=$HOME/Works/go
-    export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+  export PATH=$HOME/.anyenv/bin:/bin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin
+  export ANDROID_HOME=/usr/local/opt/android-sdk
+  export ECLIPSE_HOME=/Applications/eclipse/
+  alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/mvim -v "$@"'
+  alias ll='ls -l'
+  eval "$(anyenv init - zsh)"
+  # Go
+  export GOROOT=/usr/local/opt/go/libexec
+  export GOPATH=$HOME/Works/go
+  export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 fi
 if echo $OSTYPE | fgrep -q linux; then
-    alias pbcopy='xsel -i -b'
-    alias pbpaste='xsel -o -b'
+  alias pbcopy='xsel -i -b'
+  alias pbpaste='xsel -o -b'
+  alias ll='ls -l'
+  alias vim='nvim'
+  # alias tsc='$(npm bin)/tsc'
+  # Go
+  export GOROOT=/usr/lib/go
+  export GOPATH=/usr/share/go
+  export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 fi
 export GIT_EDITOR="/usr/local/bin/vim"
 
@@ -42,7 +49,7 @@ unsetopt promptcr
 # #
 # # Set vi mode status bar
 # #
-# 
+#
 # #
 # # Reads until the given character has been entered.
 # #
@@ -53,11 +60,11 @@ unsetopt promptcr
 #         read -E -k 1 a
 #     done
 # }
-# 
+#
 # #
 # # If the $SHOWMODE variable is set, displays the vi mode, specified by
 # # the $VIMODE variable, under the current command line.
-# # 
+# #
 # # Arguments:
 # #
 # #   1 (optional): Beyond normal calculations, the number of additional
@@ -66,33 +73,33 @@ unsetopt promptcr
 # showmode() {
 #     typeset movedown
 #     typeset row
-# 
+#
 #     # Get number of lines down to print mode
 #     movedown=$(($(echo "$RBUFFER" | wc -l) + ${1:-0}))
-#     
+#
 #     # Get current row position
 #     echo -n "\e[6n"
 #     row="${${$(readuntil R)#*\[}%;*}"
-#     
+#
 #     # Are we at the bottom of the terminal?
 #     if [ $((row+movedown)) -gt "$LINES" ]
 #     then
 #         # Scroll terminal up one line
 #         echo -n "\e[1S"
-#         
+#
 #         # Move cursor up one line
 #         echo -n "\e[1A"
 #     fi
-#     
+#
 #     # Save cursor position
 #     echo -n "\e[s"
-#     
+#
 #     # Move cursor to start of line $movedown lines down
 #     echo -n "\e[$movedown;E"
-#     
+#
 #     # Change font attributes
 #     echo -n "\e[1m"
-#     
+#
 #     # Has a mode been set?
 #     if [ -n "$VIMODE" ]
 #     then
@@ -102,18 +109,18 @@ unsetopt promptcr
 #         # Clear mode line
 #         echo -n "\e[0K"
 #     fi
-# 
+#
 #     # Restore font
 #     echo -n "\e[0m"
-#     
+#
 #     # Restore cursor position
 #     echo -n "\e[u"
 # }
-# 
+#
 # clearmode() {
 #     VIMODE= showmode
 # }
-# 
+#
 # #
 # # Temporary function to extend built-in widgets to display mode.
 # #
@@ -127,11 +134,11 @@ unsetopt promptcr
 # makemodal () {
 #     # Create new function
 #     eval "$1() { zle .'$1'; ${2:+VIMODE='$2'}; showmode $3 }"
-# 
+#
 #     # Create new widget
 #     zle -N "$1"
 # }
-# 
+#
 # # Extend widgets
 # makemodal vi-add-eol           INSERT
 # makemodal vi-add-next          INSERT
@@ -145,7 +152,7 @@ unsetopt promptcr
 # makemodal vi-open-line-below   INSERT 1
 # makemodal vi-replace           REPLACE
 # makemodal vi-cmd-mode          NORMAL
-# 
+#
 # unfunction makemodal
 
 ## 色を使う
@@ -222,23 +229,15 @@ colors
 
 PROMPT=" %{${fg[yellow]}%}%~%{${reset_color}%}
 [%n]$ "
-PROMPT2='[%n]> ' 
+PROMPT2='[%n]> '
 
 #######################################
 # peco hitory
 #######################################
 function peco-select-history() {
-    local tac
-    if which tac &gt; /dev/null; then
-        tac="tac";
-    else
-        tac="tail -r";
-    fi
-    BUFFER=$(history -n 1 | \
-        eval $tac | \
-        peco --query "$LBUFFER";)
-    CURSOR=$#BUFFER
-    zle clear-screen
+  BUFFER=`history -n 1 | tac | awk '!a[$0]++' | peco`
+  CURSOR=$#BUFFER
+  zle reset-prompt
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history

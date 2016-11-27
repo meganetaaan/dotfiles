@@ -12,6 +12,11 @@ linux   = 'make'
 unix    = 'gmake'
 
 [[plugins]]
+repo = 'neomake/neomake'
+hook_add = '''
+autocmd! BufWritePost * Neomake
+'''
+[[plugins]]
 repo = 'tpope/vim-surround'
 
 [[plugins]]
@@ -25,9 +30,6 @@ repo = 'Chiel92/vim-autoformat'
 
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
-
-[[plugins]]
-repo = 'scrooloose/syntastic'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'

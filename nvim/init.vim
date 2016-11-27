@@ -1,5 +1,6 @@
 "Python3 support
-let g:python3_host_prog = expand('$HOME') . '/.anyenv/envs/pyenv/shims/python'
+" let g:python3_host_prog = expand('$HOME') . '/.anyenv/envs/pyenv/shims/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
 """" dein settings {{{
 if &compatible
@@ -14,7 +15,6 @@ if !isdirectory(s:dein_repo_dir)
   execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 endif
 execute 'set runtimepath^=' . s:dein_repo_dir
-
 
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
@@ -37,22 +37,28 @@ if dein#check_install()
 endif
 " }}}
 
+" Neomake setting
+let g:neomake_javascript_enabled_makers = ['standard']
+let g:neomake_open_list = 2
+let g:neomake_verbose = 3
+
 """ Syntastic
-let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
-let g:syntastic_check_on_save=1 "保存時にはチェック
-let g:syntastic_check_on_wq = 0 " wqではチェックしない
-let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
-let g:syntastic_loc_list_height=6 "エラー表示ウィンドウの高さ
-set statusline+=%#warningmsg# "エラーメッセージの書式
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_typescript_checkers = ['']
-let g:syntastic_javascript_checkers = ['eslint'] "ESLintを使う
-let g:syntastic_mode_map = {
-      \ 'mode': 'active',
-      \ 'active_filetypes': ['javascript'],
-      \ 'passive_filetypes': []
-      \ }
+" let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
+" let g:syntastic_check_on_save=1 "保存時にはチェック
+" let g:syntastic_check_on_wq = 0 " wqではチェックしない
+" let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
+" let g:syntastic_loc_list_height=6 "エラー表示ウィンドウの高さ
+" set statusline+=%#warningmsg# "エラーメッセージの書式
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_typescript_checkers = ['']
+" let g:syntastic_javascript_checkers = ['eslint'] "ESLintを使う
+" let g:syntastic_mode_map = {
+"       \ 'mode': 'active',
+"       \ 'active_filetypes': ['javascript'],
+"       \ 'passive_filetypes': []
+"       \ }
+
 let g:quickrun_config={'*': {'split': ''}}
 filetype plugin indent on
 
@@ -123,4 +129,3 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 set background=dark
 
-let g:deoplete#enable_at_startup = 1 " :DeopleteEnable実行でもよい
