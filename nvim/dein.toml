@@ -2,20 +2,32 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/vimproc'
+repo = 'Shougo/vimshell.vim'
 
-[plugins.build]
-windows = 'tools\\update-dll-mingw'
-cygwin  = 'make -f make_cygwin.mak'
-mac     = 'make -f make_mac.mak'
-linux   = 'make'
-unix    = 'gmake'
+[[plugins]]
+repo = 'Shougo/vimproc'
+hook_post_update = '''
+  if dein#util#_is_windows()
+    let cmd = 'tools\\update-dll-mingw'
+  elseif dein#util#_is_cygwin()
+    let cmd = 'make -f make_mac.mak'
+  elseif executable('gmake')
+    let cmd = 'gmake'
+  else
+    let cmd = 'make'
+  endif
+  let g:dein#plugin.build = cmd
+  '''
 
 [[plugins]]
 repo = 'neomake/neomake'
 hook_add = '''
+let g:neomake_javascript_enabled_makers = ['standard']
+let g:neomake_open_list = 2
+let g:neomake_verbose = 2
 autocmd! BufWritePost * Neomake
 '''
+
 [[plugins]]
 repo = 'tpope/vim-surround'
 
