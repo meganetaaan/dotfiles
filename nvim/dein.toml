@@ -19,14 +19,17 @@ hook_post_update = '''
   let g:dein#plugin.build = cmd
   '''
 
+# [[plugins]]
+# repo = 'neomake/neomake'
+# hook_add = '''
+# let g:neomake_javascript_enabled_makers = ['standard']
+# let g:neomake_open_list = 2
+# let g:neomake_verbose = 2
+# autocmd! BufWritePost * Neomake
+# '''
+
 [[plugins]]
-repo = 'neomake/neomake'
-hook_add = '''
-let g:neomake_javascript_enabled_makers = ['standard']
-let g:neomake_open_list = 2
-let g:neomake_verbose = 2
-autocmd! BufWritePost * Neomake
-'''
+repo = 'w0rp/ale'
 
 [[plugins]]
 repo = 'tpope/vim-surround'

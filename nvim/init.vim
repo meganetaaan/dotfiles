@@ -42,7 +42,7 @@ let g:quickrun_config={'*': {'split': ''}}
 filetype plugin indent on
 
 """ Autoformat
-au BufWrite * :Autoformat
+" au BufWrite * :Autoformat
 
 """ HTML
 vmap <silent> ;h :s?^\(\s*\)+ '\([^']\+\)',*/s$?\1\2?g<CR>

@@ -78,10 +78,10 @@ on_ft = 'json'
 repo = 'Quramy/tsuquyomi'
 on_ft = ['ts', 'typescript']
 
-[[plugins]]
-repo = 'mhartington/deoplete-typescript'
-depends = ['deoplete.nvim', 'tsuquyomi']
-on_ft = ['ts', 'typescript']
+# [[plugins]]
+# repo = 'mhartington/deoplete-typescript'
+# depends = ['deoplete.nvim', 'tsuquyomi']
+# on_ft = ['ts', 'typescript']
 
 [[plugins]]
 repo = 'rcmdnk/vim-markdown'
